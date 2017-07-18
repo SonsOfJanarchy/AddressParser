@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <Product>AddressParser</Product>
+    <Company />
+    <Description>.NET Standard Library - Parse addresses into their raw components using various online services (Google Geocoding API, ...)</Description>
+    <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/MysteryDash/AddressParser</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Authors>Alexandre Quoniou</Authors>
+    <Version>0.1</Version>
+    <RootNamespace>Dash.AddressParser</RootNamespace>
+    <PackageId>Dash.AddressParser</PackageId>
+    <Copyright>Copyright (c) 2017 Alexandre Quoniou</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.4\AddressParser.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+</Project>
