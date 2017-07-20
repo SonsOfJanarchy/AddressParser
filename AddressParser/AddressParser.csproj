@@ -12,7 +12,7 @@
     <PackageProjectUrl>https://github.com/MysteryDash/AddressParser</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Authors>Alexandre Quoniou</Authors>
-    <Version>0.1</Version>
+    <Version>0.2</Version>
     <RootNamespace>Dash.AddressParser</RootNamespace>
     <PackageId>Dash.AddressParser</PackageId>
     <Copyright>Copyright (c) 2017 Alexandre Quoniou</Copyright>

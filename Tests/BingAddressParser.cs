@@ -6,37 +6,51 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dash.AddressParser.Tests
 {
     [TestClass]
-    public class GoogleAddressParserTests
+    public class BingAddressParserTests
     {
-        // Get your Google APIs key here (https://console.developers.google.com).
+        // Get your Bing Maps API key here (https://www.bingmapsportal.com).
         // Do NOT forget to remove it before a commit !
-        // It seems to be working without an api key too, so you might not need to bother about that.
         private static readonly string ApiKey = "";
 
         [TestMethod]
-        public void ParseAsync_NoDataLoss()
+        public void ParseAsync_PartialDataLoss()
         {
             var address = "3947 W CLAREMONT ST PHOENIX 85019-1415";
 
-            using (IAddressParser parser = new GoogleAddressParser(ApiKey))
+            using (IAddressParser parser = new BingAddressParser(ApiKey))
             {
                 var result = parser.ParseAsync(address).Result.FirstOrDefault();
                 Assert.AreEqual(result.StreetNumber, "3947", true);
-                Assert.AreEqual(result.Street, "West Claremont Street", true);
+                Assert.AreEqual(result.Street, "W Claremont St", true);
                 Assert.AreEqual(result.Locality, "Phoenix", true);
                 Assert.AreEqual(result.PostalCode, "85019", true);
-                Assert.AreEqual(result.PostalCodeSuffix, "1415", true);
+                Assert.AreEqual(result.PostalCodeSuffix, string.Empty, true);
+            }
+        }
+
+        [TestMethod]
+        public void ParseAsync_DataLoss()
+        {
+            var address = "Champ de Mars, 5 Avenue Anatole France, 75007 Paris";
+
+            using (IAddressParser parser = new BingAddressParser(ApiKey))
+            {
+                var result = parser.ParseAsync(address).Result.FirstOrDefault();
+                Assert.AreEqual(result.StreetNumber, string.Empty, true);
+                Assert.AreEqual(result.Street, "Champ-de-Mars", true);
+                Assert.AreEqual(result.Locality, "Paris", true);
+                Assert.AreEqual(result.PostalCode, "75007", true);
             }
         }
 
         [TestMethod]
         public void ParseAsync_RandomInput()
         {
-            var address = "My name is Bond, James Bond (but is that sentence really random ?).";
+            var address = "fiupohbfuipzeobnhfupiodskeyboardmashiophfseiufhisjfpsdijo";
             
             var exception = Assert.ThrowsException<AggregateException>(() =>
             {
-                using (IAddressParser parser = new GoogleAddressParser(ApiKey))
+                using (IAddressParser parser = new BingAddressParser(ApiKey))
                 {
                     parser.ParseAsync(address).Wait();
                 }
@@ -52,7 +66,7 @@ namespace Dash.AddressParser.Tests
             
             var exception = Assert.ThrowsException<AggregateException>(() =>
             {
-                using (IAddressParser parser = new GoogleAddressParser("abcdefghijklmnopqrstuvwxyz"))
+                using (IAddressParser parser = new BingAddressParser("abcdefghijklmnopqrstuvwxyz"))
                 {
                     parser.ParseAsync(address).Wait();
                 }
