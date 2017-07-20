@@ -12,6 +12,7 @@ You can install this library using the following NuGet command :
         
 Then, you can choose one of the following parsers :
 * Google Geocoding API
+* Bing Maps API
 * More coming soon...
 
 ## Example
@@ -42,7 +43,7 @@ The following people are contributors of this project :
 ## Versioning
 
 We use [Semantic Versioning 2.0.0](http://semver.org/) for versioning (starting at 0.1.0).  
-The current version of this project is version 0.1.0.  
+The current version of this project is version 0.2.0.  
   
 About the version, I know it might not be for the best that it is updated manually, but :
 * Does it matter that much *for this particular project* ?
